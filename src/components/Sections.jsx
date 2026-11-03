@@ -52,11 +52,9 @@ export const CTA = () => {
         <Container maxWidth="lg" sx={{ borderRadius: 5, py: { xs: 6, md: 9 }, px: { xs: 3, md: 8 }, color: '#fff', background: `radial-gradient(600px 300px at 90% 0%, rgba(8,102,217,.55), transparent 70%), radial-gradient(500px 300px at 0% 100%, rgba(8,102,217,.4), transparent 70%), ${c.navy}` }}>
           <Typography variant="h2" component="h2" sx={{ maxWidth: 640 }}>See your own fleet in Autonex.</Typography>
           <Typography sx={{ mt: 2, maxWidth: 520, color: 'rgba(255,255,255,.82)' }}>Book a demo and we will walk through live tracking, incidents and driver behavior using your Wialon data.</Typography>
-          <Stack component="form" name="contact" method="POST" netlify="" data-netlify="true" direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ mt: 4, maxWidth: 760 }}>
-            <input type="hidden" name="form-name" value="contact" />
-            <TextField required type="text" name="name" label="Name" autoComplete="name" fullWidth
-              sx={{ bgcolor: '#fff', borderRadius: 999, '& fieldset': { border: 0, borderRadius: 999 } }} InputLabelProps={{ sx: { ml: 1 } }} inputProps={{ style: { paddingLeft: 24 } }} />
-            <TextField required type="email" name="email" label="Email" autoComplete="email" fullWidth
+          <Stack component="form" name="demo-request" method="POST" data-netlify="true" direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ mt: 4, maxWidth: 520 }}>
+            <input type="hidden" name="form-name" value="demo-request" />
+            <TextField required type="email" name="email" label="Work email" fullWidth
               sx={{ bgcolor: '#fff', borderRadius: 999, '& fieldset': { border: 0, borderRadius: 999 } }} InputLabelProps={{ sx: { ml: 1 } }} inputProps={{ style: { paddingLeft: 24 } }} />
             <Button type="submit" variant="contained" size="large" sx={{ bgcolor: c.amber, color: c.navy, whiteSpace: 'nowrap', '&:hover': { bgcolor: '#E8AB10' } }}>Book a demo</Button>
           </Stack>
