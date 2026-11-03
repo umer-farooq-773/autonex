@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Box, Typography, Stack, Tabs, Tab, Button, TextField, Container } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place';
 import AltRouteIcon from '@mui/icons-material/AltRoute';
@@ -19,7 +18,7 @@ export const Trust = () => (
   <Box sx={{ borderTop: `1px solid ${c.line}`, borderBottom: `1px solid ${c.line}`, bgcolor: c.soft }}>
     <Container maxWidth="lg" sx={{ py: 3 }}>
       <Box sx={{ display: 'grid', gap: 2.5, gridTemplateColumns: { xs: '1fr 1fr', md: 'repeat(4,1fr)' } }}>
-        {[[CableIcon, 'Wialon integration'], [ApartmentIcon, 'Multi-tenant by design'], [LockIcon, 'Role-based access'], [LocalShippingIcon, 'Trucks, buses, vans, bikes']].map(([I, t]) => (
+        {[[CableIcon, 'Wialon integration'], [ApartmentIcon, 'Multi-Company Management'], [LockIcon, 'Role-based access'], [LocalShippingIcon, 'Trucks, buses, vans, bikes']].map(([I, t]) => (
           <Stack key={t} direction="row" spacing={1.25} alignItems="center"><I sx={{ color: c.blue }} /><Typography sx={{ fontWeight: 600, fontSize: 15 }}>{t}</Typography></Stack>
         ))}
       </Box>
@@ -47,21 +46,18 @@ export const Proof = () => (
 );
 
 export const CTA = () => {
-  const [email, setEmail] = useState('');
-  const [sent, setSent] = useState(false);
   return (
     <Box id="demo" sx={{ px: { xs: 2, md: 4 }, pb: { xs: 8, md: 12 }, scrollMarginTop: '72px' }}>
       <Reveal>
         <Container maxWidth="lg" sx={{ borderRadius: 5, py: { xs: 6, md: 9 }, px: { xs: 3, md: 8 }, color: '#fff', background: `radial-gradient(600px 300px at 90% 0%, rgba(8,102,217,.55), transparent 70%), radial-gradient(500px 300px at 0% 100%, rgba(8,102,217,.4), transparent 70%), ${c.navy}` }}>
           <Typography variant="h2" component="h2" sx={{ maxWidth: 640 }}>See your own fleet in Autonex.</Typography>
           <Typography sx={{ mt: 2, maxWidth: 520, color: 'rgba(255,255,255,.82)' }}>Book a demo and we will walk through live tracking, incidents and driver behavior using your Wialon data.</Typography>
-          {sent ? <Typography role="status" sx={{ mt: 4, fontWeight: 600 }}>Thanks. We will write to {email} to set up your demo.</Typography> : (
-            <Stack component="form" direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ mt: 4, maxWidth: 520 }} onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
-              <TextField required type="email" label="Work email" value={email} onChange={(e) => setEmail(e.target.value)} fullWidth
-                sx={{ bgcolor: '#fff', borderRadius: 999, '& fieldset': { border: 0, borderRadius: 999 } }} InputLabelProps={{ sx: { ml: 1 } }} inputProps={{ style: { paddingLeft: 24 } }} />
-              <Button type="submit" variant="contained" size="large" sx={{ bgcolor: c.amber, color: c.navy, whiteSpace: 'nowrap', '&:hover': { bgcolor: '#E8AB10' } }}>Book a demo</Button>
-            </Stack>
-          )}
+          <Stack component="form" name="demo-request" method="POST" data-netlify="true" direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ mt: 4, maxWidth: 520 }}>
+            <input type="hidden" name="form-name" value="demo-request" />
+            <TextField required type="email" name="email" label="Work email" fullWidth
+              sx={{ bgcolor: '#fff', borderRadius: 999, '& fieldset': { border: 0, borderRadius: 999 } }} InputLabelProps={{ sx: { ml: 1 } }} inputProps={{ style: { paddingLeft: 24 } }} />
+            <Button type="submit" variant="contained" size="large" sx={{ bgcolor: c.amber, color: c.navy, whiteSpace: 'nowrap', '&:hover': { bgcolor: '#E8AB10' } }}>Book a demo</Button>
+          </Stack>
         </Container>
       </Reveal>
     </Box>

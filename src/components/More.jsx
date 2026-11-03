@@ -9,7 +9,10 @@ import waybill from '../assets/waybill.jpg';
 
 const steps = [
   ['Connect Wialon', 'Link your Wialon account. Your units and messages appear in Autonex with no new hardware.'],
-  ['Create tenants', 'Add each client or branch, assign their vehicles and invite their users with the right role.'],
+[
+    'Add Companies',
+    'Register each company or branch, assign its vehicles and invite users with appropriate access roles.'
+],
   ['Set your rules', 'Choose speed limits, geofences and behavior thresholds that should raise an incident.'],
   ['Monitor and report', 'Watch the live map, handle incidents and review driver scores each week.'],
 ];
@@ -67,7 +70,10 @@ export const Blog = () => (
 const faqs = [
   ['Do I need to install new tracking hardware?', 'In most cases, no. Autonex is designed to work with vehicle units already connected to your Wialon account, so you can use the tracking data those units provide. The available information depends on your devices and Wialon configuration.'],
   ['What information can I see from Wialon?', 'Autonex brings key fleet information into one workspace, including vehicle location, speed, and status. You can also review route activity and driver events when the relevant data is reported by your tracking units and configured in Wialon.'],
-  ['How does multi-tenant access work?', 'You can organize vehicles and users by client, company, or branch. Assign users to the appropriate tenant and role so teams can work with the fleet information relevant to them, while administrators manage the broader setup.'],
+[
+    'How Does Multi-Company Management Work?',
+    'Organize vehicles and users by company, client, or branch. Assign users to the appropriate company with specific access roles, allowing each team to manage its own fleet information while administrators maintain control over the entire platform.'
+],
   ['Which driver behavior events can be reviewed?', 'Depending on the data your tracking units send, teams can review events such as speeding, harsh braking, harsh acceleration, and harsh cornering. Use the event details and trip context to identify patterns and support clear, constructive driver coaching.'],
   ['How are incidents recorded and followed up?', 'When an event meets a configured rule, it can be recorded with relevant details such as the vehicle, time, and location. Your team can review the incident, take action, and track it through to closure, helping keep follow-up organized.'],
   ['Can Autonex help with maintenance and waybills?', 'Yes. The operations workspace includes vehicle maintenance records and reminders, along with waybill creation and shipment status updates. It also supports goods inspection workflows, helping teams manage routine tasks alongside fleet tracking.'],

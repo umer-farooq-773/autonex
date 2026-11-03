@@ -12,7 +12,17 @@ import goods from '../assets/goods.jpg';
 
 const rows = [
   { img: wialon, alt: 'Real-time tracking with Wialon: a laptop map showing speed, location and time', t: 'Real-time tracking with Wialon', d: 'Position, speed and status for every vehicle, read from your Wialon account. No new hardware needed.', pts: ['Live location and speed', 'Route monitoring', 'Driver behavior on the road'] },
-  { img: tenant, alt: 'Multi-tenant support: Company A, B and C managed on a single platform', t: 'Multi-tenant support', d: 'Give each client or branch its own fleet, users and reports, all on one platform.', pts: ['Separate fleet per tenant', 'Role-based user access', 'Reports for each client'] },
+{
+    img: tenant,
+    alt: 'Manage multiple companies, each with its own fleet, users and reports on one platform',
+    t: 'Multi-Company Management',
+    d: 'Manage multiple companies on one centralized fleet platform, with separate vehicles, drivers, users and reports for each business.',
+    pts: [
+        'Separate fleet for each company',
+        'Role-based user access',
+        'Company-specific reports'
+    ]
+},
   { img: analytics, alt: 'Analytics and reports: a laptop showing fleet charts, with a list of report types', t: 'Analytics and reports', d: 'Turn fleet activity into numbers you can act on, from daily trips to driver reports.', pts: ['Fleet performance', 'Driver reports', 'Trip history and custom reports'] },
 ];
 const mods = [
