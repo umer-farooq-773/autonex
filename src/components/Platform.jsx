@@ -80,7 +80,7 @@ export default function Platform() {
               </Float>
             </motion.div>
           </Box>
-          <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1.5, textAlign: 'center' }}>Illustrative screens.</Typography>
+          {/* <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1.5, textAlign: 'center' }}>Illustrative screens.</Typography> */}
         </Reveal>
       </Box>
     </Section>
