@@ -1,4 +1,5 @@
-import { Box, Typography, Stack, Tabs, Tab, Button, TextField, Container } from '@mui/material';
+import { useState } from 'react';
+import { Box, Typography, Stack, Tabs, Tab, Button, TextField, Container, Alert } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place';
 import AltRouteIcon from '@mui/icons-material/AltRoute';
 import InsightsIcon from '@mui/icons-material/Insights';
@@ -46,18 +47,81 @@ export const Proof = () => (
 );
 
 export const CTA = () => {
+  const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error'
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('submitting');
+
+    const formData = new FormData(e.currentTarget);
+    const data = new URLSearchParams(formData).toString();
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data,
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        e.target.reset(); // Clear the form on success
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
   return (
     <Box id="demo" sx={{ px: { xs: 2, md: 4 }, pb: { xs: 8, md: 12 }, scrollMarginTop: '72px' }}>
       <Reveal>
         <Container maxWidth="lg" sx={{ borderRadius: 5, py: { xs: 6, md: 9 }, px: { xs: 3, md: 8 }, color: '#fff', background: `radial-gradient(600px 300px at 90% 0%, rgba(8,102,217,.55), transparent 70%), radial-gradient(500px 300px at 0% 100%, rgba(8,102,217,.4), transparent 70%), ${c.navy}` }}>
           <Typography variant="h2" component="h2" sx={{ maxWidth: 640 }}>See your own fleet in Autonex.</Typography>
           <Typography sx={{ mt: 2, maxWidth: 520, color: 'rgba(255,255,255,.82)' }}>Book a demo and we will walk through live tracking, incidents and driver behavior using your Wialon data.</Typography>
-          <Stack component="form" name="demo-request" method="POST" data-netlify="true" direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ mt: 4, maxWidth: 520 }}>
-            <input type="hidden" name="form-name" value="demo-request" />
-            <TextField required type="email" name="email" label="Work email" fullWidth
-              sx={{ bgcolor: '#fff', borderRadius: 999, '& fieldset': { border: 0, borderRadius: 999 } }} InputLabelProps={{ sx: { ml: 1 } }} inputProps={{ style: { paddingLeft: 24 } }} />
-            <Button type="submit" variant="contained" size="large" sx={{ bgcolor: c.amber, color: c.navy, whiteSpace: 'nowrap', '&:hover': { bgcolor: '#E8AB10' } }}>Book a demo</Button>
-          </Stack>
+          
+          {status === 'success' ? (
+            <Alert severity="success" sx={{ mt: 4, maxWidth: 520, borderRadius: 2 }}>
+              Thank you! Your demo request has been received. We will contact you shortly.
+            </Alert>
+          ) : status === 'error' ? (
+            <Alert severity="error" sx={{ mt: 4, maxWidth: 520, borderRadius: 2 }}>
+              Something went wrong. Please try again or email us directly.
+            </Alert>
+          ) : (
+            <Stack 
+              component="form" 
+              name="demo-request" 
+              onSubmit={handleSubmit}
+              direction={{ xs: 'column', sm: 'row' }} 
+              spacing={1.5} 
+              sx={{ mt: 4, maxWidth: 520 }}
+            >
+              <input type="hidden" name="form-name" value="demo-request" />
+              
+              <TextField 
+                required 
+                type="email" 
+                name="email" 
+                label="Work email" 
+                fullWidth
+                disabled={status === 'submitting'}
+                sx={{ bgcolor: '#fff', borderRadius: 999, '& fieldset': { border: 0, borderRadius: 999 } }} 
+                InputLabelProps={{ sx: { ml: 1 } }} 
+                inputProps={{ style: { paddingLeft: 24 } }} 
+              />
+              <Button 
+                type="submit" 
+                variant="contained" 
+                size="large" 
+                disabled={status === 'submitting'}
+                sx={{ bgcolor: c.amber, color: c.navy, whiteSpace: 'nowrap', '&:hover': { bgcolor: '#E8AB10' } }}
+              >
+                {status === 'submitting' ? 'Sending...' : 'Book a demo'}
+              </Button>
+            </Stack>
+          )}
         </Container>
       </Reveal>
     </Box>
