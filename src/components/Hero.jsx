@@ -65,7 +65,6 @@ export default function Hero() {
           <Float sx={{ position: 'absolute', right: { xs: 8, md: '3%' }, top: { xs: -14, md: -18 } }} dy={6} dur={5.5} delay={1.2}><Score /></Float>
         </Box>
       </Container>
-      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', textAlign: 'center', mt: 2 }}>Hero cards show sample data.</Typography>
     </Box>
   );
 }
