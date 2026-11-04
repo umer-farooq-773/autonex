@@ -12,7 +12,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { c, card } from '../theme';
 import { Reveal, Section, RouteMap } from './ui';
-import { Logo, links } from './Nav';
+import { Logo } from './Nav';
 import road from '../assets/road.jpg';
 
 export const Trust = () => (
@@ -129,14 +129,12 @@ export const CTA = () => {
 };
 
 export const Footer = () => (
-  <Box component="footer" sx={{ borderTop: `1px solid ${c.line}`, py: 6 }}>
-    <Container maxWidth="lg" sx={{ display: 'grid', gap: 4, gridTemplateColumns: { xs: '1fr 1fr', md: '2fr 1fr 1fr 1fr' } }}>
-      <Box sx={{ gridColumn: { xs: '1 / -1', md: 'auto' } }}><Logo /><Typography color="text.secondary" sx={{ mt: 1.5, maxWidth: 300 }}>Fleet tracking, incidents and driver behavior on Wialon.</Typography></Box>
-      {[['Product', links.map(([t, h]) => [t, h])], ['Company', [['Book a demo', '#demo'], ['Contact', 'mailto:hello@fleetflow.example']]], ['Legal', [['Privacy', '#'], ['Terms', '#']]]].map(([h, ls]) => (
-        <Box key={h} component="nav" aria-label={h}><Typography sx={{ fontWeight: 600, mb: 1.5 }}>{h}</Typography>
-          <Stack spacing={1}>{ls.map(([t, u]) => <Box key={t} component="a" href={u} sx={{ color: c.mute, textDecoration: 'none', '&:hover': { color: c.blue }, '&:focus-visible': { outline: `2px solid ${c.blue}`, outlineOffset: 2 } }}>{t}</Box>)}</Stack></Box>
-      ))}
+  <Box component="footer" sx={{ borderTop: `1px solid ${c.line}`, py: 3 }}>
+    <Container maxWidth="lg" sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: { xs: 'flex-start', sm: 'center' }, justifyContent: 'space-between', gap: 1.5 }}>
+      <Logo />
+      <Typography color="text.secondary" sx={{ maxWidth: 420, textAlign: { sm: 'right' } }}>
+        Fleet tracking, incidents and driver behavior on AutoNex.
+      </Typography>
     </Container>
-    <Container maxWidth="lg"><Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 5 }}>© {new Date().getFullYear()} Autonex. All rights reserved.</Typography></Container>
   </Box>
 );
